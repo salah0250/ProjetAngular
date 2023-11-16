@@ -1,0 +1,54 @@
+/* Styles créatifs pour la barre d'outils */
+.mat-toolbar {
+  background-color: #05386B;
+  color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.mat-toolbar a {
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+.example-icon {
+  color: aliceblue;
+}
+
+/* Style pour le bouton de connexion */
+.example-icon.mat-icon-button:hover {
+  background-color: #5cdb95;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.example-icon.mat-icon-button {
+  margin-right: 10px;
+}
+
+/* Style pour l'icône de la maison */
+.mat-toolbar .mat-icon-button:hover {
+  background-color: #ff7f50;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+.custom-list {
+  padding-top: 20px; /* Espace en haut de la liste */
+}
+
+.mat-list-item {
+  padding: 12px 16px; /* Espacement interne des éléments de la liste */
+  transition: background-color 0.3s ease; /* Transition lors du survol */
+}
+
+.mat-list-item:hover {
+  background-color: #5cdb95; /* Couleur de fond au survol */
+  cursor: pointer; /* Curseur de la souris au survol */
+}
+
+.mat-list-item a {
+  color: aliceblue; /* Couleur du texte des liens */
+  text-decoration: none; /* Supprimer la soulignement des liens */
+}

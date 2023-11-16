@@ -1,0 +1,28 @@
+
+<div class="diver">
+<mat-list *ngFor="let assignment of assignments">
+    <h3 mat-subheader>{{assignment.dateDeRendu | date  }}</h3>
+    <mat-list-item (click)="assignmentClique(assignment)"> 
+        <p appRendu *ngIf="assignment.rendu;else nomsoumis ">
+           Devoir intitulé {{assignment.nom}} a été rendu.
+          </p>
+          <ng-template #nomsoumis>
+            Le devoir  {{assignment.nom}} n'a pas été rendu.
+          </ng-template>
+          <mat-divider></mat-divider>
+    </mat-list-item>
+    <button  mat-raised-button color="warn" (click)="$event.stopPropagation(); deleteAssignment(assignment)">Delete</button>
+</mat-list>
+<mat-card  *ngIf="assignmentSelectionne">
+  <mat-card-content>
+     <mat-card-title>
+       <h2>{{assignmentSelectionne.nom}}</h2>
+     </mat-card-title>
+     <mat-card-subtitle>
+  {{assignmentSelectionne.nom}} - Due: {{assignmentSelectionne.dateDeRendu | date :  'dd/MM/yyyy'}}
+     </mat-card-subtitle>
+     <mat-checkbox *ngIf="!assignmentSelectionne.rendu" (click)="onAssignmentRendu()">Devoir rendu</mat-checkbox>
+  </mat-card-content>
+</mat-card>
+
+</div>

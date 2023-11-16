@@ -1,0 +1,17 @@
+<div class="diver">
+    <form (submit)="onDelete(); deleteForm.reset()" #deleteForm class="form">
+      <mat-form-field>
+        <mat-label>Choisir un devoir à supprimer</mat-label>
+        <mat-select [(ngModel)]="selectedAssignment">
+          <mat-option *ngFor="let assignment of assignments" [value]="assignment">
+            {{ assignment.nom }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-stroked-button color="warn" [disabled]="!suppressionActive">
+        Supprimer un devoir
+      </button>
+    </form>
+  </div>
+  

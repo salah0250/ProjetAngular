@@ -1,0 +1,44 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="opened=!opened">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button (click)="logout()">Logout</button>
+  <a routerLink="/" style="text-decoration: none; color: inherit;">
+    <mat-icon>home</mat-icon>
+  </a>
+  <button mat-icon-button class="example-icon" aria-label="Connexion"  routerLink="../login">
+    <mat-icon>person</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container style="    height: calc(205vh - 115vh);  ">
+  <mat-sidenav  [(opened)]="opened" mode="side" style="   width: 250px;background-color: #05386B; ">
+    <mat-list class="custom-list">
+      <mat-list-item style="margin-top: 10px;"><a routerLink="../assignment-detail" style="color: aliceblue;">Liste des devoirs</a></mat-list-item>
+      <mat-list-item style="margin-top: 10px;"><a routerLink="./ajout-devoir" style="color: aliceblue;">Ajout d'un devoir</a></mat-list-item>
+      <mat-list-item style="margin-top: 10px;"><a routerLink="/assignments" style="color: aliceblue;">Modification d'un devoir</a></mat-list-item>
+      <mat-list-item style="margin-top: 10px;"><a routerLink="./delete" style="color: aliceblue;">Suppression d'un devoir</a></mat-list-item>
+      <mat-list-item style="margin-top: 10px;"><a routerLink="/assignments" style="color: aliceblue;">Génération de données de test</a></mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content style="margin-top: 50px;">
+    <!-- 
+      j'ai placer le code de la page d'ajout de devoir dans le router-outlet.
+      Donc j'ai creer un component pour la page d'ajout de devoir.
+      et pour les prochaines tp je vais faire la meme chose avec les autres pages.
+      quand l'utilisteur clique sur le lien de la page d'ajout de devoir, le code de la page d'ajout de devoir va s'afficher dans le router-outlet.
+
+            <div class="diver">
+         <form ngForm (submit)="onSubmit()"#assignmentForm class="form">
+        <mat-form-field>
+          <input matInput [(ngModel)] = "nomDevoir" name="nom" placeholder="Nom du devoir" required> 
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="dateDeRendu" name=" date" placeholder="date de devoir">
+    -->
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

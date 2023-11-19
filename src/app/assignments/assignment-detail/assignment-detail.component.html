@@ -1,19 +1,28 @@
 
 <div class="diver">
-<mat-list *ngFor="let assignment of assignments">
+<mat-list *ngFor="let assignment of assignments" >
+  <nav>
+    <a routerLink="/assignment-detail/{{assignment.id}}">
     <h3 mat-subheader>{{assignment.dateDeRendu | date  }}</h3>
-    <mat-list-item (click)="assignmentClique(assignment)"> 
-        <p appRendu *ngIf="assignment.rendu;else nomsoumis ">
+    <mat-list-item (click)="assignmentClique(assignment)" > 
+        <p appRendu *ngIf="assignment.rendu ;else nomsoumis "[ngStyle]="{'background-color': assignment.rendu ? 'green' : 'red'}" >
            Devoir intitulé {{assignment.nom}} a été rendu.
           </p>
           <ng-template #nomsoumis>
             Le devoir  {{assignment.nom}} n'a pas été rendu.
-          </ng-template>
+          </ng-template>  
           <mat-divider></mat-divider>
     </mat-list-item>
-    <button  mat-raised-button color="warn" (click)="$event.stopPropagation(); deleteAssignment(assignment)">Delete</button>
+    <a routerLink="/assignment-detail/{{assignment.id}}/assignment-edit">
+      <button mat-flat-button color="primary" *ngIf="canEditOrDelete()" style="margin-left: 20px;margin-top: 15px;" >
+        EDIT
+      </button>
+    </a> 
+  </a>
+  </nav>
+  <button  mat-raised-button color="warn" (click)="$event.stopPropagation(); deleteAssignment(assignment)" style="float: right;">Delete</button> 
 </mat-list>
-<mat-card  *ngIf="assignmentSelectionne">
+<mat-card  *ngIf="assignmentSelectionne" style="clear: both;">
   <mat-card-content>
      <mat-card-title>
        <h2>{{assignmentSelectionne.nom}}</h2>

@@ -5,6 +5,7 @@ import {AssignmentsComponent} from './assignments/assignments.component';
 const routes: Routes = [
 {
     path: "assignments", component: AssignmentsComponent},
+    {path: "assignment-detail/:id", component: AssignmentsComponent},
     {
         path: "", component: AssignmentsComponent}
 ];

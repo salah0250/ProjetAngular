@@ -2,10 +2,12 @@
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="opened=!opened">
     <mat-icon>menu</mat-icon>
   </button>
-  <button (click)="logout()">Logout</button>
   <a routerLink="/" style="text-decoration: none; color: inherit;">
     <mat-icon>home</mat-icon>
   </a>
+  <button mat-icon-button class="example-icon" aria-label="Logout" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
   <button mat-icon-button class="example-icon" aria-label="Connexion"  routerLink="../login">
     <mat-icon>person</mat-icon>
   </button>
@@ -14,7 +16,7 @@
 <mat-sidenav-container style="    height: calc(205vh - 115vh);  ">
   <mat-sidenav  [(opened)]="opened" mode="side" style="   width: 250px;background-color: #05386B; ">
     <mat-list class="custom-list">
-      <mat-list-item style="margin-top: 10px;"><a routerLink="../assignment-detail" style="color: aliceblue;">Liste des devoirs</a></mat-list-item>
+      <mat-list-item style="margin-top: 10px;"><a routerLink="../assignment-detail/:id" style="color: aliceblue;">Liste des devoirs</a></mat-list-item>
       <mat-list-item style="margin-top: 10px;"><a routerLink="./ajout-devoir" style="color: aliceblue;">Ajout d'un devoir</a></mat-list-item>
       <mat-list-item style="margin-top: 10px;"><a routerLink="/assignments" style="color: aliceblue;">Modification d'un devoir</a></mat-list-item>
       <mat-list-item style="margin-top: 10px;"><a routerLink="./delete" style="color: aliceblue;">Suppression d'un devoir</a></mat-list-item>

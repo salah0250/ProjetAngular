@@ -1,0 +1,28 @@
+mat-card {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  mat-card-subtitle {
+    font-size: 18px;
+    color: #757575;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  
+  mat-checkbox {
+    margin-top: 20px;
+  }
+  .checked {
+    border: 2px solid green;
+  }

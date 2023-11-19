@@ -13,22 +13,7 @@ export class AjoutDevoirComponent implements OnInit {
 [x: string]: any;
 
   titre : String = "Mon application Angular sur les assignments"
-  assignments:Assignment[] = [
-    {
-      nom: "Vive les maths",
-      dateDeRendu: new Date('2021-03-01'),
-      rendu: true
-    },
-    {
-      nom: "Vive la physique",
-      dateDeRendu: new Date('2023-03-05'),
-      rendu: false
-    },
-    {
-      nom: "Angular c'est encore mieux",
-      dateDeRendu: new Date('2021-03-10'),
-      rendu: false
-    }];
+  assignments:Assignment[] = [];
 
   constructor(private router : Router,private assignmentService: AssignmentService) { }
     ajoutActive = false;
@@ -41,12 +26,14 @@ export class AjoutDevoirComponent implements OnInit {
   
     onSubmit() {
       const newAssignment = new Assignment();
+      newAssignment.id = Math.floor(Math.random()*1000);
       newAssignment.nom = this.nomDevoir;
       newAssignment.dateDeRendu = this.dateDeRendu ;
       newAssignment.rendu = false;
       this.assignments.push(newAssignment);
       this.assignmentService.addAssignment(newAssignment);
-      this.router.navigate(['/assignment-detail']);
+      console.log(this.assignments );
+      this.router.navigate(['/assignment-detail/:id']);
     }
    
   ngOnInit(): void {

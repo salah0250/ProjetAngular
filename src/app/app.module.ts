@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -28,6 +29,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './assignments/login/login.component';
 import { AuthGuard } from './services/auth.guard';
+import { AssignmentEditComponent } from './assignments/assignment-edit/assignment-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { AuthGuard } from './services/auth.guard';
     AjoutDevoirComponent,
     DeleteComponent,
     AssignmentDetailComponent,
-    LoginComponent
+    LoginComponent,
+    AssignmentEditComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +63,9 @@ import { AuthGuard } from './services/auth.guard';
     RouterModule.forRoot([
       { path: 'ajout-devoir', component: AjoutDevoirComponent },
       { path: 'delete', component: DeleteComponent },
-      { path: 'assignment-detail', component: AssignmentDetailComponent,  canActivate: [AuthGuard]      },
+      { path: 'assignment-detail/:id', component: AssignmentDetailComponent,  canActivate: [AuthGuard]      },
       { path: 'login', component: LoginComponent },
+      { path: 'assignment-detail/:id/assignment-edit', component:  AssignmentEditComponent},
       {
         path: "", component: AjoutDevoirComponent}
     ])

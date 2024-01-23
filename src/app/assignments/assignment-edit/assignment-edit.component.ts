@@ -28,7 +28,7 @@ getAssignment() {
    // le "+" force l'id de type string en "number"
    const id = +this.route.snapshot.params['id'];
   
-   this.assignmentsService.getAssignment(id).subscribe((assignment) => {
+   this.assignmentsService.getAssignment(id).subscribe(assignment => {
      if (!assignment) return;
      this.assignment = assignment;
      // Pour pré-remplir le formulaire
@@ -38,10 +38,12 @@ getAssignment() {
  }
  onSaveAssignment() {
    if (!this.assignment) return;
+   if (this.nomAssignment) this.assignment.nom = this.nomAssignment;
+    if (this.dateDeRendu) this.assignment.dateDeRendu = this.dateDeRendu;
 
    // on récupère les valeurs dans le formulaire
-   this.assignment.nom = this.nomAssignment;
-   this.assignment.dateDeRendu = this.dateDeRendu;
+  this.assignmentsService.updateAssignment(this.assignment)
+  .subscribe(response => { console.log(response.message); });
    this.router.navigate(['/assignment-detail', this.assignment.id]);
  }
 }

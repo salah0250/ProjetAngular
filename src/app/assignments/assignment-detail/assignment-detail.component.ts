@@ -6,41 +6,57 @@ import { ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { HttpClient } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-assignment-detail',
   templateUrl: './assignment-detail.component.html',
-  styleUrls: ['./assignment-detail.component.css']
+  styleUrls: ['./assignment-detail.component.css'],
+  
 })
 export class AssignmentDetailComponent implements OnInit ,OnDestroy{
   /*@Input()*/ assignementTransmis?:Assignment  ;
   private assignmentsSub: Subscription;
   titre : String = "Mon application Angular sur les assignments"
+  pageSize = 5; // Adjust the page size as per your requirement
+  currentPage = 0;
   assignmentClique(assignment:Assignment) {
     this.assignmentSelectionne = assignment;
   }
   onAssignmentRendu() {
-    this.assignmentSelectionne.rendu = true;
+    if (this.assignementTransmis) {
+      this.assignementTransmis.rendu = true;
+      this.assignmentService.updateAssignment(this.assignementTransmis).subscribe(reponse  => { 
+        console.log(reponse.message);
+        this.router.navigate(['/assignment-detail', this.assignmentSelectionne.id]);
+      });
+    }
   }
 
   edit() {
+    /*
     if (this.canEditOrDelete()) {
       this.router.navigate(['/assignment-edit', this.assignmentSelectionne.id]);
     }else{
       this.router.navigate(['/login']);
 
     }
+    */
   }
   deleteAssignment(assignment: Assignment) {
+    /*
     console.log('Deleting assignment', assignment); // Check if this logs when you click the button
     if (this.canEditOrDelete()) {
-      this.assignmentService.deleteAssignment(this.assignmentSelectionne).subscribe(() => {
+      this.assignmentService.deleteAssignment(this.assignmentSelectionne).subscribe(reponse => {
+        console.log(reponse.message);
         this.router.navigate(['/ajout-devoir']);
       });
     } else {  
       this.router.navigate(['/login']);
     }
+    */
   }
+  /*
   canEditOrDelete(): boolean {
     const currentUserItem = localStorage.getItem('currentUser');
     if (currentUserItem) {
@@ -58,12 +74,15 @@ export class AssignmentDetailComponent implements OnInit ,OnDestroy{
     }
     return false;
   }
+  */
   assignmentSelectionne!:Assignment; 
   assignments:Assignment[] = [];
 
   constructor(private assignmentService: AssignmentService, private cd: ChangeDetectorRef,private router : Router,private authService: AuthenticationService,private route:ActivatedRoute) {
     this.assignmentsSub = new Subscription();
    }
+   displayedColumns: string[] = ['auteurs','nom', 'dateDeRendu'];
+
     ajoutActive = false;
     nomDevoir:string = "";
     dateDeRendu!:Date;
@@ -79,13 +98,25 @@ export class AssignmentDetailComponent implements OnInit ,OnDestroy{
       newAssignment.rendu = false;
       this.assignments.push(newAssignment);
     }
-   
+    loadAssignments() {
+      const startIndex = this.currentPage * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.assignmentService
+        .getAssignmentsPaginated(startIndex, endIndex)
+        .subscribe((assignments) => {
+          this.assignments = assignments;
+        });
+    }
+  
+    onPageChange(page: number) {
+      this.currentPage = page;
+      this.loadAssignments();
+    }
   ngOnInit(): void {
-    this.assignments = this.assignmentService.getAssignments();
-    this.assignmentsSub = this.assignmentService.getAssignmentsUpdateListener()
-    .subscribe((assignments: Assignment[]) => {
-      this.assignments = assignments;
-    });
+    //this.assignmentService.getAssignments().subscribe(assignments => { this.assignments = assignments; });
+    this.loadAssignments();
+
+
 //this.getAssignment();
   }
   ngOnDestroy() {

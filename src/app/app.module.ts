@@ -30,6 +30,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './assignments/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { AssignmentEditComponent } from './assignments/assignment-edit/assignment-edit.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -59,13 +63,16 @@ import { AssignmentEditComponent } from './assignments/assignment-edit/assignmen
     MatListModule,
     MatSelectModule,
     MatCardModule,
+    HttpClientModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatPaginatorModule,
     RouterModule.forRoot([
-      { path: 'ajout-devoir', component: AjoutDevoirComponent },
-      { path: 'delete', component: DeleteComponent },
+      { path: 'ajout-devoir', component: AjoutDevoirComponent,canActivate: [AuthGuard]  },
+      { path: 'delete', component: DeleteComponent ,canActivate: [AuthGuard]  },
       { path: 'assignment-detail/:id', component: AssignmentDetailComponent,  canActivate: [AuthGuard]      },
       { path: 'login', component: LoginComponent },
-      { path: 'assignment-detail/:id/assignment-edit', component:  AssignmentEditComponent},
+      { path: 'assignment-detail/:id/assignment-edit', component:  AssignmentEditComponent ,canActivate: [AuthGuard] },
       {
         path: "", component: AjoutDevoirComponent}
     ])

@@ -27,6 +27,7 @@ export class AssignmentsComponent implements OnInit {
     onSubmit() {
       const newAssignment = new Assignment();
       newAssignment.nom = this.nomDevoir;
+      newAssignment.auteurs = localStorage.getItem('currentUser') || '';
       newAssignment.dateDeRendu = this.dateDeRendu ;
       newAssignment.rendu = true;
       this.assignments.push(newAssignment);

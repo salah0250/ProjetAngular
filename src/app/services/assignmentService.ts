@@ -26,17 +26,18 @@ addAssignment(assignment: Assignment) {
     this.assignmentsUpdated.next([...this.assignments]);
   }
 */
-getAssignmentsPaginated(startIndex: number, endIndex: number): Observable<Assignment[]> {
-  const params = new HttpParams()
-    .set('startIndex', startIndex.toString())
-    .set('endIndex', endIndex.toString());
+getAssignmentsPaginated(startIndex: number, endIndex: number, searchTerm: string, selectedFilter: boolean | null): Observable<Assignment[]> { 
+  let url = this.url + '?startIndex=' + startIndex + '&endIndex=' + endIndex + '&searchTerm=' + (searchTerm || '');
 
-  return this.htttp.get<Assignment[]>(this.url, { params });
+  if (selectedFilter !== null) {
+    url += '&selectedFilter=' + selectedFilter;
+  } else {
+    url += '&selectedFilter=true&false';
+  }
+
+  return this.htttp.get<Assignment[]>(url);
 }
-getAssignments():Observable<Assignment[]> {
-  return this.htttp.get<Assignment[]>(this.url);
-  //return this.assignments;
-}
+
 
   /* getAssignments() {
     // this.htttp.get(this.url);

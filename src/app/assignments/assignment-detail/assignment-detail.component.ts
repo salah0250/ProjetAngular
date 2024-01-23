@@ -20,15 +20,24 @@ export class AssignmentDetailComponent implements OnInit ,OnDestroy{
   titre : String = "Mon application Angular sur les assignments"
   pageSize = 5; // Adjust the page size as per your requirement
   currentPage = 0;
+  searchTerm: string = ''; // Variable to store the search term
+  filterOptions = [
+    { label: 'Tous', value: 'true&false'},
+    { label: 'Rendu', value: true },
+    { label: 'Non Rendu', value: false },
+  ];
+  
+  selectedFilter: boolean | null = 'true&false' as any;
   assignmentClique(assignment:Assignment) {
     this.assignmentSelectionne = assignment;
   }
   onAssignmentRendu() {
-    if (this.assignementTransmis) {
-      this.assignementTransmis.rendu = true;
-      this.assignmentService.updateAssignment(this.assignementTransmis).subscribe(reponse  => { 
-        console.log(reponse.message);
-        this.router.navigate(['/assignment-detail', this.assignmentSelectionne.id]);
+    if (this.assignmentSelectionne) {
+      this.assignmentSelectionne.rendu = true;
+      this.assignmentService.updateAssignment(this.assignmentSelectionne).subscribe(response => {
+        console.log(response.message);
+        // Mettez à jour la liste des affectations après la modification
+        this.loadAssignments();
       });
     }
   }
@@ -98,15 +107,22 @@ export class AssignmentDetailComponent implements OnInit ,OnDestroy{
       newAssignment.rendu = false;
       this.assignments.push(newAssignment);
     }
-    loadAssignments() {
-      const startIndex = this.currentPage * this.pageSize;
-      const endIndex = startIndex + this.pageSize;
-      this.assignmentService
-        .getAssignmentsPaginated(startIndex, endIndex)
-        .subscribe((assignments) => {
-          this.assignments = assignments;
-        });
+    onSearchChange() {
+      // Trigger the assignment loading when the search term changes
+      this.loadAssignments();
     }
+    onFilterChange() {
+  this.loadAssignments();
+}
+loadAssignments() {
+  const startIndex = this.currentPage * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+  this.assignmentService
+    .getAssignmentsPaginated(startIndex, endIndex, this.searchTerm, this.selectedFilter)
+    .subscribe((assignments) => {
+      this.assignments = assignments;
+    });
+}
   
     onPageChange(page: number) {
       this.currentPage = page;
@@ -128,4 +144,5 @@ getAssignment() {
   this.assignmentService.getAssignment(id)
   .subscribe(assignment =>  this.assignementTransmis= assignment);
 }
+
 }

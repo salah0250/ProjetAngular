@@ -1,6 +1,21 @@
 <div class="diver">
 
-
+  <div class="search-bar-container">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by Assignment Name"
+      class="search-bar"
+      (input)="onSearchChange()"
+    />
+    <label>
+      Filter:
+      <select [(ngModel)]="selectedFilter" (change)="onFilterChange()">
+        <option value="" selected disabled>Choose...</option>
+        <option *ngFor="let option of filterOptions" [value]="option.value">{{ option.label }}</option>
+      </select>
+    </label>
+  </div>
   <table mat-table [dataSource]="assignments" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.

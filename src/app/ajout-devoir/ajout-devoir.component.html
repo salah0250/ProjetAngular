@@ -1,8 +1,9 @@
+
 <div class="login-background">
   <div class="diver">
     <mat-stepper [linear]="true" #stepper>
      <!-- Étape 1 -->
-<mat-step>
+  <mat-step>
   <ng-template matStepLabel>Nom du devoir</ng-template>
   <form (ngSubmit)="next(stepper)" #step1Form="ngForm">
     <mat-form-field class="animated-form-field">
@@ -57,4 +58,5 @@
 
     </mat-stepper>
   </div>
+
 </div>

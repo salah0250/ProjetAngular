@@ -3,6 +3,9 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { LayoutService } from '../../services/LayoutService';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// home icon 
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginComponent implements OnInit, OnDestroy{
+  faHome = faHome;
+
   Email: string = '';
   password: string = '';
   Nom: string = '';

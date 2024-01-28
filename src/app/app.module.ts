@@ -82,6 +82,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatStepperModule,
     MatSnackBarModule,
+    BrowserAnimationsModule,
+
     // import SimpleChanges from '@angular/core';
     RouterModule.forRoot([
       { path: 'ajout-devoir', component: AjoutDevoirComponent,canActivate: [AuthGuard]  },

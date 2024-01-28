@@ -1,0 +1,61 @@
+
+      
+section {
+    padding: 5rem 9%;
+
+}.home {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+  
+  .home .box {
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-size: cover !important;
+    background-position: center !important;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 2rem 9%;
+    
+  }
+  .home .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover !important;
+    background-position: center !important;
+    filter: brightness(50%); /* Appliquez le filtre ici */
+    z-index: -1; /* Assurez-vous que le pseudo-élément est derrière le contenu */
+}  .home .box .content {
+    width: 50rem;
+  }
+  
+  .home .box .content span {
+    font-size: 4rem;
+    color: #ffffff;
+  }
+  
+  .home .box .content h3 {
+    font-size: 3.5rem;
+    color: #ffffff;
+    padding-top: .5rem;
+    text-transform: uppercase;
+  }
+  
+  .home .box .content p {
+    line-height: 2;
+    color: rgb(255, 255, 255);
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+  

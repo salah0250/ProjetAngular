@@ -1,24 +1,93 @@
-/* Styles créatifs pour la barre d'outils */
+/*  background: linear-gradient(to right, #05386B, #5cdb95, #ff7f50);
+  background-size: 200% 100%;
+  animation: gradientAnimation 5s linear infinite;*/
 
+
+/* ... Vos autres styles ... */
 
 .mat-toolbar {
-  background-color: #05386B;
-  color: aliceblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  background: linear-gradient(to right, #032a52, #054584, #129fb5);
+  background-size: 200% 100%;
+  animation: gradientAnimation 5s linear infinite;
+  position: relative;
+  overflow: hidden; /* Assurez-vous que le débordement est masqué pour que les flèches soient coupées au-delà de la barre d'outils */
+
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  background-color: aliceblue;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: arrowAnimation 1s ease-in-out infinite alternate;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  background-color: aliceblue;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: windAnimation 2s ease-in-out infinite;
+}
+
+.arrow.left {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  left: -20px; /* Ajustez la position initiale */
+}
+
+.arrow.right {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  right: -20px; /* Ajustez la position initiale */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes windAnimation {
+  0% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-55%) translateX(10px); /* Ajustez le déplacement horizontal */
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
 }
 
 .mat-toolbar a {
   margin-left: 10px;
   font-size: 24px;
 }
+.sidenav-transition {
+  transition: width 0.3s ease;
+}
 
+.mat-toolbar button:hover, .mat-toolbar a:hover {
+  background-color: #5cdb95;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
 
 .example-icon {
   color: aliceblue;
-  background-color: #05386B;
   border-radius: 50%;
 }
 
@@ -31,6 +100,11 @@
 
 .example-icon.mat-icon-button {
   margin-right: 10px;
+}
+.example-icon.logout-button:hover {
+  background-color: #ff7f50;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
 }
 
 /* Style pour l'icône de la maison */
@@ -56,4 +130,18 @@
 .mat-list-item a {
   color: aliceblue; /* Couleur du texte des liens */
   text-decoration: none; /* Supprimer la soulignement des liens */
+}.mat-sidenav {
+  background: linear-gradient(to right, #032a52, #054584, #129fb5);
+  background-size: 200% 100%;
+  animation: gradientAnimation 5s linear infinite;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 40px; /* Adjust the width and height as needed */
+  height: 40px;
+  margin-right: 10px; /* Adjust the margin as needed */
 }

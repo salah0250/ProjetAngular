@@ -3,11 +3,26 @@ import { Assignment } from './assignment.model';
 import { Router } from '@angular/router';
 import { LayoutService } from  '../services/LayoutService';
 import { Observable } from 'rxjs';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0, transform: 'translateY(-20px)' })),
+      ]),
+    ]),
+  ]
+  
+  
 })
 export class AssignmentsComponent implements OnInit {
   showLayout$: Observable<boolean>;

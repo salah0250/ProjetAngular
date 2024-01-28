@@ -1,5 +1,5 @@
 
-import { NgModule } from '@angular/core';
+import { NgModule, SimpleChange } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -34,6 +34,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { SigninComponent } from './assignments/signin/signin.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AssignmentInfoComponent } from './assignments/assignment-info/assignment-info.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SimpleChanges } from '@angular/core';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +52,10 @@ import { MatSort } from '@angular/material/sort';
     DeleteComponent,
     AssignmentDetailComponent,
     LoginComponent,
-    AssignmentEditComponent
+    AssignmentEditComponent,
+    SigninComponent,
+    ConnexionComponent,
+    AssignmentInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,15 +79,23 @@ import { MatSort } from '@angular/material/sort';
     MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatSnackBarModule,
+    // import SimpleChanges from '@angular/core';
     RouterModule.forRoot([
       { path: 'ajout-devoir', component: AjoutDevoirComponent,canActivate: [AuthGuard]  },
       { path: 'delete', component: DeleteComponent ,canActivate: [AuthGuard]  },
       { path: 'assignment-detail/:id', component: AssignmentDetailComponent,  canActivate: [AuthGuard]      },
       { path: 'login', component: LoginComponent },
       { path: 'assignment-detail/:id/assignment-edit', component:  AssignmentEditComponent ,canActivate: [AuthGuard] },
+      { path: 'signin', component: SigninComponent },
+      { path: 'connexion', component: ConnexionComponent },
+      { path: 'assignment-detail/:id/assignment-info', component:  AssignmentInfoComponent ,canActivate: [AuthGuard] },
       {
         path: "", component: AjoutDevoirComponent}
-    ])
+    ]),
+    FontAwesomeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

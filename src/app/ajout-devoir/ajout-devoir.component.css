@@ -1,62 +1,43 @@
-/* Styles for the container div */
 .diver {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 15px;
-    background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Styles for the form inside the container */
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Styles for the mat-form-field */
-  mat-form-field {
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  /* Styles for the input fields */
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 100px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Pour cacher les coins arrondis dépassant de l'élément parent */
+}
 
-  
-  /* Styles for the input fields on focus */
-  input.mat-input-element:focus {
-    outline: none;
-    border-color: #e74c3c;
-    background-color: #ffffff;
-  }
-  
-  /* Styles for the mat-datepicker */
-  mat-datepicker {
-    width: calc(100% - 30px);
-  }
-  
-  /* Styles for the mat-button */
-  button.mat-stroked-button {
-    width: 100%;
-    margin-top: 30px;
-    font-size: 20px;
-    border-width: 2px;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-  }
-  
-  /* Styles for the mat-button on hover */
-  button.mat-stroked-button:hover {
-    background-color: #3498db;
-    color: #ffffff;
-    border-color: #3498db;
-    cursor: pointer;
-  }
-  
-  /* Styles for the ngFor paragraph elements */
-  div p {
-    margin: 20px 0;
-    font-size: 18px;
-    color: #333;
-  }
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.animated-form-field {
+  margin-bottom: 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.animated-form-field:hover {
+  transform: scale(1.05);
+}
+
+button.mat-stroked-button {
+  width: 100%;
+  margin-top: 30px;
+  font-size: 20px;
+  border-width: 2px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+button.mat-stroked-button:hover {
+  background-color: #3498db;
+  color: #ffffff;
+  border-color: #3498db;
+  cursor: pointer;
+  transform: scale(1.1);
+}

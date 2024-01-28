@@ -1,11 +1,13 @@
 /* Styles créatifs pour la barre d'outils */
+
+
 .mat-toolbar {
   background-color: #05386B;
   color: aliceblue;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 16px;
+  height: 60px;
 }
 
 .mat-toolbar a {

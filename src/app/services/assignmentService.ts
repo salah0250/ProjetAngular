@@ -13,7 +13,7 @@ export class AssignmentService {
   private assignmentsUpdated = new Subject<Assignment[]>();
 constructor(private htttp:HttpClient) { }
 
-url = "https://back-end-assignment.onrender.com/api/assignments";
+url = "http://localhost:8010/api/assignments";
 addAssignment(assignment: Assignment):Observable<any> { 
   return this.htttp.post(this.url,assignment);
   //this.assignments.push(assignment);
@@ -32,7 +32,7 @@ getAssignmentsPaginated(startIndex: number, endIndex: number, searchTerm: string
   if (selectedFilter !== null) {
     url += '&selectedFilter=' + selectedFilter;
   } else {
-    url += '&selectedFilter=true&false';
+    url += '&selectedFilter=true&selectedFilter=false';
   }
 
   return this.htttp.get<Assignment[]>(url);
@@ -77,4 +77,9 @@ return this.htttp.delete(deleteUrl);
   updateAssignment(assignment:Assignment):Observable<any> {
     return this.htttp.put<Assignment>(this.url,assignment);
   }
+  getSubjectIdByName(subjectName: string): Observable<string> {
+    const url = `http://localhost:8010/api/matiere/${subjectName}`;
+    return this.htttp.get<string>(url);
+  }
+  
 }

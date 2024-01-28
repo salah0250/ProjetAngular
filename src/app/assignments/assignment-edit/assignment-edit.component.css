@@ -14,3 +14,10 @@
     width: 100%;
     margin-bottom: 20px;
   }
+  .login-background {
+    background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond avec transparence */
+  height: calc(205vh - 100vh);  
+  background-image: url('../../../images/Students.jpg'); /* Remplacez le chemin avec le chemin réel de votre image */
+  background-size: cover;
+  background-position: center;
+  }

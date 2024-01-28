@@ -6,6 +6,7 @@ interface User {
   Email: string;
   password: string;
   role: string;
+  Nom: string; // Ajoutez cette ligne si nécessaire
 }
 
 @Injectable({
@@ -31,9 +32,45 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   isLogged(Email: string, password: string): Observable<string | null> {
-    return this.http.post<User>('https://back-end-assignment.onrender.com/api/users', { Email, password }).pipe(
-      map(user => user ? user.role : null),
+    return this.http.post<User>('http://localhost:8010/api/users', { Email, password  }).pipe(
+      map(user => {
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
+          console.log('currentUser', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+          return user.role;
+        }
+        return null;
+      }),
       catchError(() => of(null))
     );
+  }
+  isAdmin(Email: string, password: string): Observable<boolean> {
+    return this.http.post<User>('http://localhost:8010/api/users', { Email, password }).pipe(
+      map(user => {
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
+          console.log('currentUser', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+          return user.role === 'admin';
+        }
+        return false;
+      }),
+      catchError(() => of(false))
+    );
+  }
+  isprof(Email: string, password: string): Observable<boolean> {
+    return this.http.post<User>('http://localhost:8010/api/users', { Email, password }).pipe(
+      map(user => {
+        if (user) {
+          localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
+          console.log('currentUser', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+          return user.role === 'enseignant';
+        }
+        return false;
+      }),
+      catchError(() => of(false))
+    );
+  }
+  createAccount(user: any): Observable<any> {
+    return this.http.post('http://localhost:8010/api/users/create-account', user);
   }
 }

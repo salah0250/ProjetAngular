@@ -14,7 +14,7 @@ import {CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
         const currentUser = JSON.parse(currentUserItem);
         if (currentUser) {
           // Check the user's role and the route they're trying to access
-          if (route.routeConfig && route.routeConfig.path && route.routeConfig.path.includes('assignment-detail/:id/assignment-edit') && currentUser.role !== 'admin') {
+          if (route.routeConfig && route.routeConfig.path && route.routeConfig.path.includes('assignment-detail/:id/assignment-edit') && currentUser.role !== 'admin' && currentUser.role !== 'enseignant') {
             // If the user is not an admin and they're trying to access the assignment-edit route, redirect them
             this.router.navigate(['/login']);
             return false;
@@ -35,4 +35,6 @@ import {CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
       this.router.navigate(['/login']);
       return false;
     }
+    
+
   }

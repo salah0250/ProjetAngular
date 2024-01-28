@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import { Assignment } from './assignment.model';
 import { Router } from '@angular/router';
+import { LayoutService } from  '../services/LayoutService';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
-  styleUrls: ['./assignments.component.css']
+  styleUrls: ['./assignments.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AssignmentsComponent implements OnInit {
-
+  showLayout$: Observable<boolean>;
   titre : String = "Mon application Angular sur les assignments"
   assignments:Assignment[] = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private layoutService: LayoutService) {
+    this.showLayout$ = this.layoutService.showLayout$;
+   }
     ajoutActive = false;
     nomDevoir:string = "";
     dateDeRendu!:Date;
@@ -34,6 +39,7 @@ export class AssignmentsComponent implements OnInit {
     }
    
   ngOnInit(): void {
+    this.showLayout$ = this.layoutService.showLayout$;
     setTimeout  (() => {
       this.ajoutActive = true;
     } , 2000);

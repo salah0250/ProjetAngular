@@ -4,6 +4,7 @@
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+  position: relative;
 }
 
 .search-bar-container {
@@ -30,25 +31,46 @@
 }
 
 mat-card {
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 20px;
+  position: absolute; /* Position mat-card absolutely */
+  top: 10px; /* Ajustez la valeur en conséquence */
+  left: 0px; /* Ajustez la valeur en conséquence */
+  width: 310px; /* Set a specific width for the mat-card */
+  height: 270px; /* Set a specific height for the mat-card */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Ensure mat-card is above the table */
+  overflow: auto; /* Enable overflow with scrollbars if content exceeds the fixed size */
+  display: none; /* Initially hide the mat-card */
+  transition: opacity 0.3s ease; /* Add a smooth transition effect */
+
+  img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 50%; /* Make the image a rounded circle */
+    overflow: hidden; /* Ensure overflow is hidden for rounded corners */
+    display: block; /* Ensure the image is treated as a block element */
+    margin: 0 auto; /* Center the image within its container */
+  }
+}
+.diver:hover .mat-card {
+  display: block;
+}
+
+mat-card-content {
+  max-width: 100%; /* Ensure the content doesn't exceed the card width */
+  padding: 0px; /* Adjust padding as needed */
 }
 
 mat-card-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 18px; /* Adjust font size as needed */
 }
 
 mat-card-subtitle {
-  font-size: 18px;
+  font-size: 14px; /* Adjust font size as needed */
   color: #757575;
 }
 
 button {
-  margin-right: 10px;
+  margin-top: 15px;
 }
 
 mat-checkbox {
@@ -58,12 +80,14 @@ mat-checkbox {
 .checked {
   border: 2px solid green;
 }
-
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  position: relative;
+  z-index: 0;
 }
+
 
 th, td {
   padding: 12px;
@@ -94,4 +118,46 @@ th {
   .diver {
     padding: 10px;
   }
+}
+.login-background {
+  height: auto;
+  margin-bottom: 20px; 
+}
+
+
+/* Style du conteneur des options par page */
+.items-per-page {
+  margin-top: 10px;
+}
+
+/* Style de l'étiquette (label) */
+.items-per-page label {
+  margin-right: 10px;
+}
+
+/* Style de la liste déroulante (dropdown) */
+.items-per-page select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Style des options de la liste déroulante */
+.items-per-page option {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Style lorsqu'un élément de la liste déroulante est survolé */
+.items-per-page option:hover {
+  background-color: #f2f2f2;
+}
+
+/* Style lorsqu'un élément de la liste déroulante est sélectionné */
+.items-per-page select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(0, 128, 0, 0.4);
 }

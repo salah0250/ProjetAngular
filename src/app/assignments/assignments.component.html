@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="showLayout$ | async" >
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" mat-button (click)="opened=!opened">
     <mat-icon>menu</mat-icon>
   </button>
@@ -8,13 +8,13 @@
   <button mat-icon-button class="example-icon" aria-label="Logout" (click)="logout()">
     <mat-icon>logout</mat-icon>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Connexion"  routerLink="../login">
+  <button mat-icon-button class="example-icon" aria-label="Connexion"  routerLink="./login">
     <mat-icon>person</mat-icon>
   </button>
 </mat-toolbar>
 
-<mat-sidenav-container style="    height: calc(205vh - 115vh);  ">
-  <mat-sidenav  [(opened)]="opened" mode="side" style="   width: 250px;background-color: #05386B; ">
+<mat-sidenav-container style="    height: calc(205vh - 100vh);  " >
+  <mat-sidenav  [(opened)]="opened" mode="side" style="   width: 250px;background-color: #05386B; " *ngIf="showLayout$ | async" >
     <mat-list class="custom-list">
       <mat-list-item style="margin-top: 10px;"><a routerLink="../assignment-detail/:id" style="color: aliceblue;">Liste des devoirs</a></mat-list-item>
       <mat-list-item style="margin-top: 10px;"><a routerLink="./ajout-devoir" style="color: aliceblue;">Ajout d'un devoir</a></mat-list-item>
@@ -23,7 +23,7 @@
       <mat-list-item style="margin-top: 10px;"><a routerLink="/assignments" style="color: aliceblue;">Génération de données de test</a></mat-list-item>
     </mat-list>
   </mat-sidenav>
-  <mat-sidenav-content style="margin-top: 50px;">
+  <mat-sidenav-content >
     <!-- 
       j'ai placer le code de la page d'ajout de devoir dans le router-outlet.
       Donc j'ai creer un component pour la page d'ajout de devoir.

@@ -1,0 +1,41 @@
+<!-- assignment-info.component.html -->
+<div class="login-background ">
+<div class="container">
+  <mat-card *ngIf="assignementTransmis" class="mat-card assignment-card">
+    <mat-card-content>
+      <div class="mat-card-title">
+        <div class="image-container">
+          <img [src]="getImageUrl()" alt="Matiere Image" class="card-image" />
+        </div>
+        <div class="info-container">
+          <h2 class="assignment-title">{{assignementTransmis.nom}}</h2>
+          <div class="info-row">
+            <div class="info-label">Nom de Famille:</div>
+            <div class="info-text">{{assignementTransmis.auteurs}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Matière:</div>
+            <div class="info-text">{{getNonMatiere()}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Professeur:</div>
+            <div class="info-text">{{getProf()}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Due:</div>
+            <div class="info-text">{{assignementTransmis.dateDeRendu | date : 'dd/MM/yyyy'}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label" *ngIf="assignementTransmis.Notes != undefined">Note :</div>
+            <div class="info-text">{{assignementTransmis.Notes}}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label" *ngIf="assignementTransmis.Remarque != undefined">Remarque :</div>
+            <div class="info-text">{{assignementTransmis.Remarque}}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>

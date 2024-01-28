@@ -1,0 +1,56 @@
+# README - Gestionnaire d'Assignments
+
+
+## Tâches Accomplies
+
+- [x] **FACILE avec options AVANCÉES**
+  - Base de données contenant au moins 1000 assignments.
+  - Ajout d'une gestion de login/password.
+  - Formulaire de login/password dans la toolbar avec bouton de connexion.
+  - Authentification basée sur une liste de login/passwords.
+  
+- [x] **AVANCÉ**
+  - Création d'une collection Utilisateurs dans MongoDB.
+  - Validation des informations de login/password avec la base de données.
+
+- [x] **AVANCÉ++**
+  - Utilisation de JSON Web Tokens (JWT) pour l'authentification.
+  
+- [x] **Ajout de Nouvelles Propriétés au Modèle des Assignments**
+  - Auteur (nom de l'élève).
+  - Matière avec association d'une image et d'une photo du professeur.
+  - Note sur 20 avec obligation de notation avant marquage "rendu".
+  - Remarques sur l'assignment.
+
+- [x] **Amélioration de l'Affichage des Assignments**
+  - Utilisation d'une table Angular Material pour afficher les assignments.
+  - Tri, pagination, vue détaillée des assignments.
+  - Possibilité de filtrer les assignments rendus/non rendus.
+  - Champ de recherche sur le nom des assignments.
+
+- [x] **Optionnel**
+  - Utilisation d'un Formulaire de type Stepper pour l'ajout d'Assignments.
+  - Intégration de messages de notification (SnackBar Material).
+  - Interface esthétique avec toolbar en haut et sidebar sur le côté.
+
+- [x] **Hébergement**
+  - Déploiement sur render.com.
+
+## Instructions d'Utilisation
+
+1. Cloner le projet depuis le référentiel.
+2. Installer les dépendances.
+3. Configurer la base de données MongoDB si nécessaire.
+4. Lancer l'application.
+5. Accéder à l'application depuis le navigateur.
+6. Utiliser les fonctionnalités selon les autorisations accordées.
+
+## Contributions
+
+Les contributions sont les bienvenues. Pour toute suggestion ou problème, veuillez ouvrir une issue pour discussion.
+
+## Auteurs
+
+Ce projet a été réalisé par Aboulkacim Salah Eddine et Ayoub El Alami El filali.
+
+

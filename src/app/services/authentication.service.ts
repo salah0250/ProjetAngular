@@ -32,7 +32,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   isLogged(Email: string, password: string): Observable<string | null> {
-    return this.http.post<User>('http://localhost:8010/api/users', { Email, password  }).pipe(
+    return this.http.post<User>('https://back-end-assignment.onrender.com/api/users', { Email, password  }).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
@@ -45,7 +45,7 @@ export class AuthenticationService {
     );
   }
   isAdmin(Email: string, password: string): Observable<boolean> {
-    return this.http.post<User>('http://localhost:8010/api/users', { Email, password }).pipe(
+    return this.http.post<User>('https://back-end-assignment.onrender.com/api/users', { Email, password }).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
@@ -58,7 +58,7 @@ export class AuthenticationService {
     );
   }
   isprof(Email: string, password: string): Observable<boolean> {
-    return this.http.post<User>('http://localhost:8010/api/users', { Email, password }).pipe(
+    return this.http.post<User>('https://back-end-assignment.onrender.com/api/users', { Email, password }).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('currentUser', JSON.stringify({ Email: user.Email, password: user.password, role: user.role, Nom: user.Nom }));
@@ -71,6 +71,6 @@ export class AuthenticationService {
     );
   }
   createAccount(user: any): Observable<any> {
-    return this.http.post('http://localhost:8010/api/users/create-account', user);
+    return this.http.post('https://back-end-assignment.onrender.com/api/users/create-account', user);
   }
 }

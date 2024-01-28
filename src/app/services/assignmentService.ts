@@ -13,7 +13,7 @@ export class AssignmentService {
   private assignmentsUpdated = new Subject<Assignment[]>();
 constructor(private htttp:HttpClient) { }
 
-url = "http://localhost:8010/api/assignments";
+url = "https://back-end-assignment.onrender.com/api/assignments";
 addAssignment(assignment: Assignment):Observable<any> { 
   return this.htttp.post(this.url,assignment);
   //this.assignments.push(assignment);
@@ -78,7 +78,7 @@ return this.htttp.delete(deleteUrl);
     return this.htttp.put<Assignment>(this.url,assignment);
   }
   getSubjectIdByName(subjectName: string): Observable<string> {
-    const url = `http://localhost:8010/api/matiere/${subjectName}`;
+    const url = `https://back-end-assignment.onrender.com/api/matiere/${subjectName}`;
     return this.htttp.get<string>(url);
   }
   
